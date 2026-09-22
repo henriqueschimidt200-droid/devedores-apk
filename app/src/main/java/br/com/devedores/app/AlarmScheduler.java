@@ -1,0 +1,10 @@
+package br.com.devedores.app;
+import android.app.*;import android.content.*;import android.os.Build;import android.provider.Settings;import java.util.*;
+public class AlarmScheduler {
+ public static final String ACTION="br.com.devedores.app.ALARM";
+ public static boolean canExact(Context c){return Build.VERSION.SDK_INT<31 || ((AlarmManager)c.getSystemService(Context.ALARM_SERVICE)).canScheduleExactAlarms();}
+ public static void openExactSettings(Context c){if(Build.VERSION.SDK_INT>=31){try{c.startActivity(new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM,android.net.Uri.parse("package:"+c.getPackageName())));}catch(Exception ignored){c.startActivity(new Intent(Settings.ACTION_SETTINGS));}}}
+ public static void schedule(Context c,String type,String id,String title,long when){if(when<=System.currentTimeMillis())return;AlarmManager am=(AlarmManager)c.getSystemService(Context.ALARM_SERVICE);Intent i=new Intent(c,LoanAlarmReceiver.class).setAction(ACTION).putExtra("type",type).putExtra("id",id).putExtra("title",title);PendingIntent pi=PendingIntent.getBroadcast(c,(type+":"+id).hashCode(),i,PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);if(Build.VERSION.SDK_INT>=23)am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,when,pi);else am.setExact(AlarmManager.RTC_WAKEUP,when,pi);}
+ public static void cancel(Context c,String type,String id){AlarmManager am=(AlarmManager)c.getSystemService(Context.ALARM_SERVICE);Intent i=new Intent(c,LoanAlarmReceiver.class).setAction(ACTION);PendingIntent pi=PendingIntent.getBroadcast(c,(type+":"+id).hashCode(),i,PendingIntent.FLAG_UPDATE_CURRENT|PendingIntent.FLAG_IMMUTABLE);am.cancel(pi);}
+ public static void rescheduleAll(Context c){if(!canExact(c))return;DataStore ds=new DataStore(c);for(Models.Client cl:ds.clients)for(Models.Loan l:cl.loans){for(int n=0;n<l.installments;n++)if(!l.installmentPaid(n)){schedule(c,"loan",l.id,cl.name+" • "+l.title+" • parcela "+(n+1),l.dueAt(n));break;}}for(Models.Reminder r:ds.reminders)schedule(c,"reminder",r.id,r.title,r.when);}
+}

@@ -1,0 +1,6 @@
+package br.com.devedores.app;
+import android.app.*;import android.os.*;import android.graphics.Color;import android.view.*;import android.widget.*;
+public class AddClientActivity extends Activity{
+ EditText name,cpf,phone,address,notes; DataStore ds;
+ public void onCreate(Bundle b){super.onCreate(b);ds=new DataStore(this);LinearLayout p=Ui.col(this);TextView t=Ui.text(this,"Novo cliente",26);t.setTypeface(null,1);p.addView(t);name=Ui.field(this,"Nome completo *");cpf=Ui.field(this,"CPF");phone=Ui.field(this,"Telefone / WhatsApp");address=Ui.field(this,"Endereço");notes=Ui.field(this,"Anotações");for(EditText e:new EditText[]{name,cpf,phone,address,notes}){p.addView(e,new LinearLayout.LayoutParams(-1,Ui.dp(this,60)));Ui.gap(this,p,8);}Button save=Ui.btn(this,"Salvar cliente");save.setOnClickListener(v->{if(name.getText().toString().trim().isEmpty()){name.setError("Informe o nome");return;}Models.Client c=new Models.Client();c.name=name.getText().toString().trim();c.cpf=cpf.getText().toString();c.phone=phone.getText().toString();c.address=address.getText().toString();c.notes=notes.getText().toString();ds.clients.add(c);ds.save();Toast.makeText(this,"Cliente salvo",Toast.LENGTH_SHORT).show();finish();});p.addView(save,new LinearLayout.LayoutParams(-1,Ui.dp(this,55)));setContentView(p);}
+}
