@@ -1,4 +1,5 @@
 package br.com.devedores.app;
+import java.text.SimpleDateFormat;
 import android.app.*;import android.os.*;import android.graphics.Color;import android.view.*;import android.widget.*;import java.util.*;
 public class AddLoanActivity extends Activity{
  DataStore ds; Models.Client client; EditText title,principal,interest,installments,firstDay; Spinner freq; Calendar due=Calendar.getInstance();

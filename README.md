@@ -1,19 +1,15 @@
-# Devedores - Android Nativo
+# Devedores — Android nativo
 
-Aplicativo Android nativo para controle de clientes, empréstimos, parcelas, pagamentos, anotações, calendário e alarmes.
+Aplicativo Android nativo para cadastro de clientes, empréstimos, juros, parcelas, pagamentos, documentos, anotações, calendário e lembretes.
 
-## Gerar o APK pelo GitHub
+## Alarmes
+- Usa AlarmManager do Android.
+- Reagencia alarmes após reinicialização do aparelho.
+- No Android 12+, solicita a permissão especial "Alarmes e lembretes" para alarmes exatos.
+- No Android 13+, solicita permissão de notificações.
 
-1. Crie um repositório no GitHub.
-2. Envie **o conteúdo desta pasta**, e não a pasta pai.
-3. Confirme que `.github/workflows/build-apk.yml` está diretamente na raiz do repositório.
-4. Faça um commit na branch `main`.
-5. Abra **Actions**.
-6. Selecione **Gerar APK - Devedores**.
-7. Clique em **Run workflow** e depois em **Run workflow** novamente.
-8. Aguarde o job ficar verde ✅.
-9. Abra a execução concluída.
-10. Na seção **Artifacts**, baixe **Devedores-APK**.
-11. Dentro do ZIP estará `app-debug.apk`.
+## Persistência
+Os dados de clientes, empréstimos, pagamentos, lembretes e URIs de documentos são salvos automaticamente em armazenamento privado do aplicativo.
 
-O workflow instala Java 17, Gradle 8.10.2 e Android SDK 35, compila `:app:assembleDebug` e publica o APK como artifact.
+## Gerar APK
+A forma mais simples neste ambiente é enviar este projeto para GitHub e executar o workflow `.github/workflows/android.yml`. O workflow gera `app-debug.apk` como artefato.
