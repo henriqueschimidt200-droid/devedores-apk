@@ -1,15 +1,23 @@
-# Devedores — Android nativo
+# Devedores 4.1
 
-Aplicativo Android nativo para cadastro de clientes, empréstimos, juros, parcelas, pagamentos, documentos, anotações, calendário e lembretes.
+Aplicativo Android nativo para gerenciamento de clientes, empréstimos, parcelas, pagamentos, documentos e lembretes.
 
-## Alarmes
-- Usa AlarmManager do Android.
-- Reagencia alarmes após reinicialização do aparelho.
-- No Android 12+, solicita a permissão especial "Alarmes e lembretes" para alarmes exatos.
-- No Android 13+, solicita permissão de notificações.
+## Interface 4.1
+- Dashboard financeiro com indicadores em cards.
+- Busca e filtros de clientes.
+- Ações rápidas para calendário, lembretes e novos empréstimos.
+- Pasta do cliente com visual de documentos e subpastas.
+- Resumo de dívida, recebimentos e atrasos.
+- Tela de contrato com status visual por parcela.
+- Calendário com eventos e status.
+- Tema escuro moderno com destaque dourado.
 
-## Persistência
-Os dados de clientes, empréstimos, pagamentos, lembretes e URIs de documentos são salvos automaticamente em armazenamento privado do aplicativo.
+## Dados e alarmes
+- Dados persistidos localmente.
+- Documentos copiados para armazenamento interno do aplicativo.
+- Alarmes e notificações nativos do Android.
+- Reprogramação dos alarmes após reinicialização.
+- Backup e restauração em JSON.
 
-## Gerar APK
-A forma mais simples neste ambiente é enviar este projeto para GitHub e executar o workflow `.github/workflows/android.yml`. O workflow gera `app-debug.apk` como artefato.
+## Build
+Use o workflow em `.github/workflows/android.yml` para gerar o APK pelo GitHub Actions.
