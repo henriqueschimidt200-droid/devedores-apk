@@ -1,23 +1,14 @@
-# Devedores 4.1
+# Devedores 5.3 — Modo Fácil
 
-Aplicativo Android nativo para gerenciamento de clientes, empréstimos, parcelas, pagamentos, documentos e lembretes.
+Interface redesenhada para uso simples, com botões grandes, textos claros e fluxo direto.
 
-## Interface 4.1
-- Dashboard financeiro com indicadores em cards.
-- Busca e filtros de clientes.
-- Ações rápidas para calendário, lembretes e novos empréstimos.
-- Pasta do cliente com visual de documentos e subpastas.
-- Resumo de dívida, recebimentos e atrasos.
-- Tela de contrato com status visual por parcela.
-- Calendário com eventos e status.
-- Tema escuro moderno com destaque dourado.
+## Principais melhorias
+- Tela inicial simplificada
+- Ações grandes: Novo cliente, Receber pagamento, Clientes e Calendário
+- Mensagens mais fáceis de entender
+- Acesso direto a Fotos, Documentos, Novo empréstimo e Registrar pagamento
+- Campos e botões com toque maior
+- Mantém salvamento automático, pastas, imagens, documentos e alarmes nativos
 
-## Dados e alarmes
-- Dados persistidos localmente.
-- Documentos copiados para armazenamento interno do aplicativo.
-- Alarmes e notificações nativos do Android.
-- Reprogramação dos alarmes após reinicialização.
-- Backup e restauração em JSON.
-
-## Build
-Use o workflow em `.github/workflows/android.yml` para gerar o APK pelo GitHub Actions.
+## Compilação
+Use o GitHub Actions incluído em `.github/workflows/android.yml`.
